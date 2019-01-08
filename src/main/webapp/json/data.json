@@ -1,0 +1,138 @@
+{
+	"code": 0,
+	"msg": "ok",
+	"data": [{
+			"id": 1,
+			"name": "系统管理",
+			"belong": "core",
+			"link": "http://www.baidu.com",
+			"sort": "10",
+			"type": "菜单",
+			"ishow": "显示",
+			"authority": "",
+			"weight": "超级管理员",
+			"pid": -1
+		},
+		{
+			"id": 2,
+			"name": "组织管理",
+			"belong": "core",
+			"link": "http://www.baidu.com",
+			"sort": "11",
+			"type": "菜单",
+			"ishow": "显示",
+			"authority": "",
+			"weight": "超级管理员",
+			"pid": 1
+		},
+		{
+			"id": 3,
+			"name": "权限管理",
+			"belong": "core",
+			"link": "http://www.baidu.com",
+			"sort": "12",
+			"type": "菜单",
+			"ishow": "显示",
+			"authority": "",
+			"weight": "超级管理员",
+			"pid": 1
+		},
+		{
+			"id": 4,
+			"name": "系统设置",
+			"belong": "core",
+			"link": "http://www.baidu.com",
+			"sort": "13",
+			"type": "菜单",
+			"ishow": "显示",
+			"authority": "",
+			"weight": "超级管理员",
+			"pid": 1
+		},
+		{
+			"id": 5,
+			"name": "系统监控",
+			"belong": "core",
+			"link": "http://www.baidu.com",
+			"sort": "14",
+			"type": "菜单",
+			"ishow": "显示",
+			"authority": "",
+			"weight": "超级管理员",
+			"pid": -1
+		},
+		{
+			"id": 6,
+			"name": "菜单管理",
+			"belong": "core",
+			"link": "http://www.baidu.com",
+			"sort": "15",
+			"type": "菜单",
+			"ishow": "显示",
+			"authority": "",
+			"weight": "超级管理员",
+			"pid": 5
+		},
+		{
+			"id": 7,
+			"name": "参数设置",
+			"belong": "core",
+			"link": "http://www.baidu.com",
+			"sort": "16",
+			"type": "菜单",
+			"ishow": "显示",
+			"authority": "sys:menu",
+			"weight": "超级管理员",
+			"pid": 5
+		},
+		{
+			"id": 8,
+			"name": "消息推送",
+			"belong": "core",
+			"link": "http://www.baidu.com",
+			"sort": "17",
+			"type": "菜单",
+			"ishow": "显示",
+			"authority": "sys:lang",
+			"weight": "超级管理员",
+			"pid": 6
+		},
+		{
+			"id": 9,
+			"name": "行政规划",
+			"belong": "core",
+			"link": "http://www.baidu.com",
+			"sort": "18",
+			"type": "菜单",
+			"ishow": "显示",
+			"authority": "sys:area",
+			"weight": "超级管理员",
+			"pid": 6
+		},
+		{
+			"id": 10,
+			"name": "模块管理",
+			"belong": "core",
+			"link": "http://www.baidu.com",
+			"sort": "19",
+			"type": "菜单",
+			"ishow": "显示",
+			"authority": "sys:config",
+			"weight": "超级管理员",
+			"pid": 9
+		},
+		{
+			"id": 11,
+			"name": "缓存监控",
+			"belong": "core",
+			"link": "http://www.baidu.com",
+			"sort": "20",
+			"type": "菜单",
+			"ishow": "显示",
+			"authority": "sys:stste:cache",
+			"weight": "超级管理员",
+			"pid": 9
+		}
+	],
+	"count": 11
+}

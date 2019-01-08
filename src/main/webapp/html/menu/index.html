@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>tree-table</title>
+<link rel="stylesheet" href="/static/layui/css/layui.css">
+<link rel="stylesheet" href="/static/tabletree/treetable.css">
+<style>
+.layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {height: 34px;line-height: 34px;padding: 0 8px;}
+.layui-table-cell{height:25px; line-height:25px;}
+.layui-btn{padding: 0px 20px !important;}
+</style>
+</head>
+<body>
+<div style="line-height:60px; float:left; margin-left:20px;">
+	<div class="layui-btn-group">
+		<button class="layui-btn" onclick="_addOpen()">新增</button>
+		<button class="layui-btn" onclick="show_hiden(this)">隐藏</button>
+		<button class="layui-btn" id="btn-expand">展开</button>
+		<button class="layui-btn" id="btn-fold">折叠</button>
+	</div>
+</div>
+<div style="margin:15px 20px;">
+	<table id="table1" class="layui-table" lay-filter="table1"></table>
+	<script type="text/html" id="oper-col">
+  	  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+  	  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+</div>
+<form id="inputform" class="layui-form layui-form-pane" action="" style="display:none;">
+	<table class="layui-table lui-table">
+		<tr>
+			<td>
+				<input type="hidden" name="form.id"/>
+				<div class="layui-form-item">
+				    <label class="layui-form-label">上级菜单</label>
+				    <div class="layui-input-block">
+				      <input type="text" name="form.login_id" required  lay-verify="required" placeholder="请输选择上级菜单" autocomplete="off" class="layui-input">
+				    </div>
+				</div>
+			</td>
+			<td>
+				<div class="layui-form-item">
+				    <label class="layui-form-label">菜单类型</label>
+				    <div class="layui-input-block">
+				      	<input type="radio" name="form.menutype" value="菜单" title="菜单" checked>
+						<input type="radio" name="form.menutype" value="权限" title="权限">
+				    </div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="layui-form-item">
+				    <label class="layui-form-label">菜单名称</label>
+				    <div class="layui-input-block">
+				      <input type="password" name="form.login_pw" required  lay-verify="required" placeholder="请输入菜单名称" autocomplete="off" class="layui-input">
+				    </div>
+				</div>
+			</td>
+			<td>
+				<div class="layui-form-item">
+				    <label class="layui-form-label">归属模块</label>
+				    <div class="layui-input-block">
+				      	<input type="checkbox" name="form.check" title="核心模块" lay-skin="primary" checked>
+						<input type="checkbox" name="form.check" title="内容管理" lay-skin="primary"> 
+						<input type="checkbox" name="form.check" title="研发工具" lay-skin="primary"> 
+				    </div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="layui-form-item">
+				    <label class="layui-form-label">链接(href)</label>
+				    <div class="layui-input-block">
+				      <input type="password" name="form.login_pw" required  lay-verify="required" placeholder="请输入链接地址" autocomplete="off" class="layui-input">
+				    </div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="layui-form-item">
+				    <label class="layui-form-label">排序(升序)</label>
+				    <div class="layui-input-block">
+				      <input type="password" name="form.login_pw" required  lay-verify="required" placeholder="请输入排序号" autocomplete="off" class="layui-input">
+				    </div>
+				</div>
+			</td>
+			<td>
+				<div class="layui-form-item">
+				    <label class="layui-form-label">权限标识</label>
+				    <div class="layui-input-block">
+				      <input type="password" name="form.login_pw" required  lay-verify="required" placeholder="请输入权限标识" autocomplete="off" class="layui-input">
+				    </div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="layui-form-item">
+				    <label class="layui-form-label">菜单图标</label>
+				    <div class="layui-input-block">
+				      <input type="password" name="form.login_pw" required  lay-verify="required" placeholder="请输选择菜单图标" autocomplete="off" class="layui-input">
+				    </div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="layui-form-item">
+				    <label class="layui-form-label">可见</label>
+				    <div class="layui-input-block">
+				      	<input type="radio" name="form.ishow" value="显示" title="显示" checked>
+						<input type="radio" name="form.ishow" value="隐藏" title="隐藏">
+				    </div>
+				</div>
+			</td>
+			<td>
+				<div class="layui-form-item">
+				    <label class="layui-form-label">菜单权重</label>
+				    <div class="layui-input-block">
+				      <input type="password" name="form.login_pw" required  lay-verify="required" placeholder="请输选择菜单图标" autocomplete="off" class="layui-input">
+				    </div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</form>
+<script src="/js/jquery-1.8.3.min.js" type="text/javascript" ></script>
+<script src="/static/layui/layui.js"></script>
+<script>
+	layui.config({
+	    base: '/static/'
+	}).extend({
+	    treetable: 'tabletree/treetable'
+	}).use(['layer', 'table', 'treetable'], function () {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var layer = layui.layer;
+        var treetable = layui.treetable;
+
+        // 渲染表格
+        var renderTable = function () {
+            layer.load(2);
+            treetable.render({
+                treeColIndex: 0,//树形图标显示在第几列
+                treeSpid: -1,//最上级的父级id
+                treeIdName: 'id',//id字段的名称
+                treePidName: 'pid',//pid字段的名称
+                treeDefaultClose: true,//是否默认折叠
+                treeLinkage: false,//父级展开时是否自动展开所有子级
+                elem: '#table1',
+                url: '/json/data.json',
+                page: false,
+                cols: [[
+                    //{type: 'numbers'},序号
+                    {field: 'name', title: '菜单名称'},
+                    {field: 'belong', title: '归属模块'},
+                    {field: 'link', title: '链接'},
+                    {field: 'sort', title: '排序'},
+                    {field: 'type', title: '类型'},
+                    {field: 'ishow', title: '可见'},
+                    {field: 'authority', title: '权限标识'},
+                    {field: 'weight', title: '权重'},
+      		        {fixed: 'right', title: '操作', width: 165, align:'center', toolbar: '#oper-col'}
+                ]],
+                done: function (res) {
+                    console.log(res);
+                    layer.closeAll('loading');
+                }
+            });
+        };
+
+        renderTable();
+
+        //全部展开
+        $('#btn-expand').click(function () {
+            treetable.expandAll('#table1');
+        });
+
+        //全部折叠
+        $('#btn-fold').click(function () {
+            treetable.foldAll('#table1');
+        });
+
+        //刷新表格
+        $('#btn-refresh').click(function () {
+            renderTable();
+        });
+
+        //监听工具条
+        table.on('tool(table1)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+
+            if (layEvent === 'del') {
+                layer.msg('删除' + data.id);
+            } else if (layEvent === 'edit') {
+                layer.msg('修改' + data.id);
+            }
+        });
+    });
+
+	function _addOpen(){
+		var indexo = layer.open({
+			  type: 1 //Page层类型
+		 	  ,area: ['880px', '500px']
+		 	  ,title: '新增菜单信息'
+		 	  ,btn: ['确定','取消']
+			  ,shade: 0.6 //遮罩透明度
+			  ,maxmin: false //允许全屏最小化
+			  ,anim: 0 //0-6的动画形式，-1不开启
+			  ,content: $("#inputform")
+			  ,yes:function(){
+				  
+			  }
+			  ,btn2:function(){
+				  $("#inputform").css("display","none");
+			  }
+			  ,cancel: function(){ 
+				  $("#inputform").css("display","none");
+			  }
+		});
+	}
+</script>
+</body>
+</html>

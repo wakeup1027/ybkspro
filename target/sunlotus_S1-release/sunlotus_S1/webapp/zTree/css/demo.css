@@ -1,0 +1,7 @@
+html,body{height:100%;margin:0px;padding:0px;}
+.lui-ztree{border-bottom: 1px solid #e1e1e1; padding-bottom: 20px;}
+.lui-left-box{width:230px;border-right:1px solid #e1e1e1;float:left;height:100%;}
+.lui-right-box{float:left;height:100%;font-size:13px;padding: 15px;}
+.lui-btn{padding:5px 15px; background:#fff; border:1px solid #e1e1e1; color:#666; outline:none; cursor:pointer; margin-top:10px;margin-left: 160px;}
+.lui-btn:hover{background:#e1e1e1}
+.checkValue{color:#ff0000;}
