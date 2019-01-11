@@ -24,9 +24,6 @@ public class QuartzScanner {
         try {
         	//如果是直接断开服务器，而不是停止开奖器之后再停服务器，所以我们需要在开启服务器的时候更新倒计时
         	TaskConfig qco = TaskConfig.dao.findById(1);
-			qco.set("second", 600);//设置这个是不让秒定时器读秒，除非执行开奖之后，秒针才开始重新读
-        	qco.set("status", "NORMAL");//正常状态
-        	qco.update();
         	
 			scheduler = StdSchedulerFactory.getDefaultScheduler();
 			//加入调度任务1
@@ -37,8 +34,14 @@ public class QuartzScanner {
 			JobDetail SecondJob = newJob(SecondJob.class).withIdentity("secondjob", "secondgroup").build();
 			Trigger SecondTrigger = newTrigger().withIdentity("secondjob", "secondgroup").withSchedule(CronScheduleBuilder.cronSchedule("0/1 * * * * ?").withMisfireHandlingInstructionDoNothing()).build();
 			
-			scheduler.scheduleJob(OpenJob, OpenTrigger);
-			scheduler.scheduleJob(SecondJob, SecondTrigger);
+			if("NORMAL".equals(qco.getStr("status"))){//如果等于开启状态，则加入
+				scheduler.scheduleJob(OpenJob, OpenTrigger);
+				scheduler.scheduleJob(SecondJob, SecondTrigger);
+				qco.set("second", 600);//正常的话就设置600秒，让秒针读取
+			}else{
+				qco.set("second", -1);//设置这个是不让秒定时器读秒，除非执行开奖之后，秒针才开始重新读
+			}
+        	qco.update();
             scheduler.start();
 		} catch (SchedulerException e) {
 			e.printStackTrace();
@@ -46,7 +49,7 @@ public class QuartzScanner {
 	}
 	
 	//暂停计时器的方法
-	public void stopQuzar() throws SchedulerException{
+	/*public void stopQuzar() throws SchedulerException{
         	scheduler = StdSchedulerFactory.getDefaultScheduler();
         	//定时器1
         	JobKey jk1 = JobKey.jobKey("openjob", "opengroup");
@@ -58,10 +61,10 @@ public class QuartzScanner {
 			TaskConfig qco = TaskConfig.dao.findById(1);
         	qco.set("status", "PAUSED");//暂停状态
         	qco.update();
-	}
+	}*/
 	
 	//重新开启计时器的方法
-	public void starQuzar() throws SchedulerException{
+	/*public void starQuzar() throws SchedulerException{
 			TaskConfig qco = TaskConfig.dao.findById(1);
 			scheduler = StdSchedulerFactory.getDefaultScheduler();
         	//恢复定时器1
@@ -73,7 +76,7 @@ public class QuartzScanner {
         	
         	qco.set("status", "NORMAL");//正常状态
         	qco.update();
-	}
+	}*/
 	
 	//往调度中添加任务
 	public void addQuzar() throws SchedulerException{

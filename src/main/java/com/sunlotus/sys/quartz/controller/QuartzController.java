@@ -4,12 +4,22 @@ import org.quartz.SchedulerException;
 
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.core.Controller;
+import com.sunlotus.common.model.TaskConfig;
 import com.sunlotus.sys.quartz.scan.QuartzScanner;
 
 public class QuartzController extends Controller{
 	
 	public void index(){
+		TaskConfig qco = TaskConfig.dao.findById(1);
+		setAttr("qurze_status", qco);
 		render("/html/quartz/quartz_config.html");
+	}
+	
+	public void doSomeThin(){
+		String status = getPara("status");
+		if("PAUSED".equals(status)){
+			stopQuzar();
+		}
 	}
 	
 	/**

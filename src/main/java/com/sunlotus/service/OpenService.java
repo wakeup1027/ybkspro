@@ -1,5 +1,8 @@
 package com.sunlotus.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.plugin.activerecord.Page;
 import com.sunlotus.common.model.OpenNumber;
@@ -12,7 +15,7 @@ public class OpenService {
 	 * @return
 	 */
 	public JSONObject LoadTableData(Integer page, Integer limit){
-		Page<OpenNumber> list = OpenNumber.dao.paginate(page, limit, "select *", "FROM yushenumber");
+		Page<OpenNumber> list = OpenNumber.dao.paginate(page, limit, "select *", "FROM yushenumber ORDER BY creatime ASC");
 		JSONObject json = new JSONObject();
 		json.put("code", 0);
 		json.put("msg", "");
@@ -45,6 +48,7 @@ public class OpenService {
 	public JSONObject savaUser(OpenNumber per){
 		JSONObject jsono = new JSONObject();
 		try {
+			per.set("creatime", new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
 			per.save();
 			jsono.put("mes", true);
 		} catch (Exception e) {

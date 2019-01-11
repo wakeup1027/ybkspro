@@ -6,11 +6,7 @@
 			"title": "开奖号码",
 			"icon": "layui-icon-edit",
 			"href": "/adminstr/userpc/kqskdj/yuiasjx/qwieusk"
-		}, {
-			"title": "定时开关",
-			"icon": "layui-icon-console",
-			"href": "/admin/excel/config"
-		}, {
+		},{
 			"title": "开奖记录",
 			"icon": "layui-icon-log",
 			"href": "/adminstr/fdgdw/fgfwe/aqwe/qwieusk"

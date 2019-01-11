@@ -29,7 +29,7 @@
 				    <label class="layui-form-label">开奖期号</label>
 				    <div class="layui-input-block">
 				      <select name="form.qihao" lay-verify="">
-						  <option value="">请选择期号</option>
+						  <option value="next">下一期</option>
 						  <option value="2019010521">2019010521</option>
 						  <option value="2019010522">2019010522</option>
 						  <option value="2019010523">2019010523</option>
@@ -86,7 +86,14 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
 		    ,limits:[10,15,20,30]
 		    ,cols: [[ //表头
 		      {field: 'id', title: 'ID', width:80, fixed: 'left'}
-		      ,{field: 'qihao', title: '开奖期号', width:400}
+		      ,{field: 'qihao', title: '开奖期号', width:400, templet:function(val){
+		    	  var value = val.qihao;
+		    	  if(value=="next"){
+		    		  return "下一期"
+		    	  }else{
+		    		  return value;
+		    	  }
+		      }}
 		      ,{field: 'openumber', title: '开奖号码', width: 200}
 		      ,{fixed: 'right', title: '操作', width: 165, align:'center', toolbar: '#barDemo'}
 		    ]]
