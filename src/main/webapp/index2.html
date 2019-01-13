@@ -125,25 +125,31 @@ $(function(){
 	var bigSmallDate = []; //大小的坐标结果集
 	var signDoubleDate = []; //单双的坐标结果集
 	var firstNumRe = "";
-	date.push(formd("2015238","256"));
+	/*date.push(formd("2015238","256"));
 	date.push(formd("2015237","145"));
-	date.push(formd("2015236","235"));
+	date.push(formd("2015236","235"));*/
+	
+	#for(data : opendlog)
+		date.push(formd('#(data.create_qihao)','#(data.create_open)'));
+	#end
+	
 	if(date.length==0){
 		$("#zoushiPuture").append('<tr><td colspan="7">数据为空，请等待开奖...</td></tr>').css("color","#999");
 	}else{
-		firstNumRe = date[0].Num;
-		/*$("#num1").text(firstNumRe.substring(0,1));
+		/*firstNumRe = date[0].Num;
+		$("#num1").text(firstNumRe.substring(0,1));
 		$("#num2").text(firstNumRe.substring(1,2));
-		$("#num3").text(firstNumRe.substring(2,3));*/
+		$("#num3").text(firstNumRe.substring(2,3));
 		$("#sum").text(parseInt(firstNumRe.substring(0,1))+parseInt(firstNumRe.substring(1,2))+parseInt(firstNumRe.substring(2,3)));
 		$("#dx").text(daxiao(parseInt(firstNumRe.substring(0,1))+parseInt(firstNumRe.substring(1,2))+parseInt(firstNumRe.substring(2,3))));
 		$("#ds").text(danshuang(parseInt(firstNumRe.substring(0,1))+parseInt(firstNumRe.substring(1,2))+parseInt(firstNumRe.substring(2,3))));
+		*/
 		for(var j=0;j<date.length;j++){
-			var chdate = date[j].Num;
-			var firstNum = chdate.substring(0,1);
-			var secondNum = chdate.substring(1,2);
-			var threeNum = chdate.substring(2,3);
-			$("#zoushiPuture").append('<tr><td style="width:100px;">'+date[j].qiNum+'</td><td style="width:90px; font-weight:700;">'+firstNum+','+secondNum+','+threeNum+'</td><td style="width:50px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
+			var chdate = date[j].Num.split(",");
+			var firstNum = chdate[0];
+			var secondNum = chdate[1];
+			var threeNum = chdate[2];
+			$("#zoushiPuture").append('<tr><td style="width:100px;">'+date[j].qiNum+'</td><td style="width:90px; font-weight:700;">'+chdate+'</td><td style="width:50px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
 
 			//写开奖号码公布
 			var thArr = $("#zoushiPuture").find("tr").eq(j+2);
