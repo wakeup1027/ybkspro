@@ -28,8 +28,7 @@
 				<div class="layui-form-item">
 				    <label class="layui-form-label">开奖期号</label>
 				    <div class="layui-input-block">
-				      <select name="form.qihao" lay-verify="">
-						  <option value="next">下一期</option>
+				      <select id="qihaoBox" name="form.qihao" lay-verify="">
 						  <option value="2019010521">2019010521</option>
 						  <option value="2019010522">2019010522</option>
 						  <option value="2019010523">2019010523</option>
@@ -137,11 +136,16 @@ function _addOpen(){
 		  datatype:'json',
 		  url:'/adminstr/userpc/kqskdj/yuiasjx/qwieusk/loadQh',
 		  success:function(data){
-			  console.log(data);
+			  $("#qihaoBox").html('');
+			  $("#qihaoBox").append('<option value="next">下一期</option>');
+			  for(var i=0; i<data.length; i++){
+				  $("#qihaoBox").append('<option value="'+data[i].qihao+'">'+data[i].qihao+'</option>');
+			  }
+			  layui.form.render();
 		  },error:function(){
 			  layer.msg('系统出错，请暂停新建号码，关闭开奖器，联系管理员');
 		  }
-	  });
+	});
 	
 	var indexo = layer.open({
 		  type: 1 //Page层类型
