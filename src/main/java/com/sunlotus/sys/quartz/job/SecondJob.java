@@ -10,7 +10,6 @@ public class SecondJob implements Job{
 
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
-		System.out.println("+++++倒计时+++++");
 		TaskConfig qco = TaskConfig.dao.findById(1);
 		/**
 		 * 如果小于0或等于0，就说明是读秒完了，应该到开奖的时间了。
@@ -19,7 +18,11 @@ public class SecondJob implements Job{
 		if(qco.getInt("second")>=1){
 			qco.set("second", qco.getInt("second")-1);//倒计时1秒直到为0
 	    	qco.update();
+		}else{//到0的时候，需要恢复成10分钟回来
+			qco.set("second", 600);//倒计时1秒直到为0
+	    	qco.update();
 		}
+		
 	}
 	
 }

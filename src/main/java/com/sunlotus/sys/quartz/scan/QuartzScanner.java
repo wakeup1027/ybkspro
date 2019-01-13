@@ -13,7 +13,7 @@ import org.quartz.TriggerKey;
 import org.quartz.impl.StdSchedulerFactory;
 
 import com.sunlotus.common.model.TaskConfig;
-import com.sunlotus.sys.quartz.job.OpenNumber;
+import com.sunlotus.sys.quartz.job.OpenNumberJob;
 import com.sunlotus.sys.quartz.job.SecondJob;
 
 public class QuartzScanner {
@@ -27,7 +27,7 @@ public class QuartzScanner {
         	
 			scheduler = StdSchedulerFactory.getDefaultScheduler();
 			//加入调度任务1
-			JobDetail OpenJob = newJob(OpenNumber.class).withIdentity("openjob", "opengroup").build();
+			JobDetail OpenJob = newJob(OpenNumberJob.class).withIdentity("openjob", "opengroup").build();
 			Trigger OpenTrigger = newTrigger().withIdentity("openjob", "opengroup").withSchedule(CronScheduleBuilder.cronSchedule("0 0/10 * * * ?").withMisfireHandlingInstructionDoNothing()).build();
 			
 			//加入调度任务2
@@ -84,7 +84,7 @@ public class QuartzScanner {
 			scheduler = StdSchedulerFactory.getDefaultScheduler();
 
 			//加入调度任务1
-			JobDetail OpenJob = newJob(OpenNumber.class).withIdentity("openjob", "opengroup").build();
+			JobDetail OpenJob = newJob(OpenNumberJob.class).withIdentity("openjob", "opengroup").build();
 			Trigger OpenTrigger = newTrigger().withIdentity("openjob", "opengroup").withSchedule(CronScheduleBuilder.cronSchedule("0 0/10 * * * ?").withMisfireHandlingInstructionDoNothing()).build();
 			
 			//加入调度任务2
