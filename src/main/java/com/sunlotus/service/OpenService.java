@@ -6,6 +6,7 @@ import java.util.Date;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.plugin.activerecord.Page;
 import com.sunlotus.common.model.OpenNumber;
+import com.sunlotus.sys.until.FormString;
 
 public class OpenService {
 	/**
@@ -48,6 +49,7 @@ public class OpenService {
 	public JSONObject savaUser(OpenNumber per){
 		JSONObject jsono = new JSONObject();
 		try {
+			per.set("openumber", new FormString().formNumTwo(Integer.parseInt(per.getStr("openumber"))));
 			per.set("creatime", new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
 			per.save();
 			jsono.put("mes", true);
