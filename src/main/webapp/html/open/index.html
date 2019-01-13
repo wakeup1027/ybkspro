@@ -132,6 +132,17 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
 });
 
 function _addOpen(){
+	$.ajax({//加载期号
+		  type:'post',
+		  datatype:'json',
+		  url:'/adminstr/userpc/kqskdj/yuiasjx/qwieusk/loadQh',
+		  success:function(data){
+			  console.log(data);
+		  },error:function(){
+			  layer.msg('系统出错，请暂停新建号码，关闭开奖器，联系管理员');
+		  }
+	  });
+	
 	var indexo = layer.open({
 		  type: 1 //Page层类型
 	 	  ,area: ['780px', '460px']

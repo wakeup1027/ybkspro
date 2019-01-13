@@ -3,6 +3,7 @@ package com.sunlotus.controller;
 import com.jfinal.core.Controller;
 import com.sunlotus.common.model.OpenNumber;
 import com.sunlotus.service.OpenService;
+import com.sunlotus.sys.until.FormString;
 
 public class OpenController extends Controller {
 
@@ -30,5 +31,12 @@ public class OpenController extends Controller {
 	 */
 	public void save(){
 		renderJson(new OpenService().savaUser(getModel(OpenNumber.class,"form")));
+	}
+	
+	/**
+	 * 加载期号
+	 */
+	public void loadQh(){
+		renderJson(FormString.BuilderQihao());
 	}
 }

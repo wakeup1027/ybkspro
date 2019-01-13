@@ -180,7 +180,7 @@ public class FormString {
 	}
 	
 	//补位，如果位数不足的时候用0来填上
-	public String formNum(int nowday){
+	public static String formNum(int nowday){
 		String strnowday = String.valueOf(nowday);
 		String zero = "";
 		if(6-strnowday.length()<=0){
@@ -216,9 +216,9 @@ public class FormString {
 		List<OpenNumber> lo = new ArrayList<OpenNumber>();
 		TaskConfig tc = TaskConfig.dao.findById(1);
 		int nowNum = tc.getInt("nowNum");
-		for(int i=0; i<200; i++){
+		for(int i=0; i<=200; i++){
 			OpenNumber ope = new OpenNumber();
-			ope.set("qihao", nowNum+i);
+			ope.set("qihao", "2019"+FormString.formNum(nowNum+i));
 			lo.add(ope);
 		}
 		return lo;
@@ -226,7 +226,6 @@ public class FormString {
 	
 	public static void main(String[] args) { 
 		  System.out.println(new FormString().formNumTwo(425));
-		  System.out.println(new FormString().formNum(1));
 	}
 	
 }

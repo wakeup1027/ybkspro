@@ -20,13 +20,13 @@ public class OpenNumberJob implements Job{
 		//更新这个字段，然后让秒定时器读秒
 		TaskConfig qco = TaskConfig.dao.findById(1);
     	qco.set("second", 600);//恢复600秒：10分钟
-    	igstr = new FormString().formNum(qco.getInt("nowNum"));
+    	igstr = FormString.formNum(qco.getInt("nowNum"));
     	qco.set("nowNum", qco.getInt("nowNum")+1);
     	qco.update();
     	
     	//开始从开奖池里面拿号码
     	Opend_log ol = new Opend_log();
-    	ol.set("create_qihao", igstr);
+    	ol.set("create_qihao", "2019"+igstr);
 		OpenNumber onum = OpenNumber.dao.findFirst("SELECT * FROM yushenumber WHERE qihao='next' ORDER BY creatime ASC");
 		if(onum!=null){//不为空拿开奖池里面的号码
 			ol.set("create_open", onum.getStr("openumber"));
