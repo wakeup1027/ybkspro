@@ -18,7 +18,7 @@ public class SecondJob implements Job{
 		if(qco.getInt("second")>=1){
 			qco.set("second", qco.getInt("second")-1);//倒计时1秒直到为0
 	    	qco.update();
-		}else{//到0的时候，需要恢复成10分钟回来
+		}else{//到0的时候，需要恢复成10分钟回来 
 			qco.set("second", 600);//倒计时1秒直到为0
 	    	qco.update();
 		}
