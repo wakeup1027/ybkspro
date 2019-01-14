@@ -149,6 +149,27 @@ function _addOpen(){
 		  ,anim: 0 //0-6的动画形式，-1不开启
 		  ,content: $("#inputform")
 		  ,yes:function(){
+			  var sfe = $("input[name='form.openumber']").val().trim();
+			  var firnum = parseInt(sfe.substring(0,1));
+			  var sednum = parseInt(sfe.substring(1,2));
+			  var thrnum = parseInt(sfe.substring(2,3));
+			  var jnum = parseInt(sfe);
+			  if(firnum>6||firnum<1||isNaN(firnum)){
+				  alert("第一位数不符合规范");
+				  return false;
+			  }
+			  if(sednum>6||sednum<1||isNaN(sednum)){
+				  alert("第二位数不符合规范");
+				  return false;
+			  }
+			  if(thrnum>6||thrnum<1||isNaN(thrnum)){
+				  alert("第三位数不符合规范");
+				  return false;
+			  }
+			  if(sfe.length!=3){
+				  alert("号码长度输入错误");
+				  return false;
+			  }
 			  $.ajax({
 				  type:'post',
 				  datatype:'text',
