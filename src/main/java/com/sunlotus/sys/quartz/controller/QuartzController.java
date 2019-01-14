@@ -3,10 +3,13 @@ package com.sunlotus.sys.quartz.controller;
 import org.quartz.SchedulerException;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
+import com.sunlotus.common.UserInterceptor;
 import com.sunlotus.common.model.TaskConfig;
 import com.sunlotus.sys.quartz.scan.QuartzScanner;
 
+@Before(UserInterceptor.class)
 public class QuartzController extends Controller{
 	
 	public void index(){

@@ -1,10 +1,13 @@
 package com.sunlotus.controller;
 
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
+import com.sunlotus.common.UserInterceptor;
 import com.sunlotus.common.model.OpenNumber;
 import com.sunlotus.service.OpenService;
 import com.sunlotus.sys.until.FormString;
 
+@Before(UserInterceptor.class)
 public class OpenController extends Controller {
 
 	public void index(){

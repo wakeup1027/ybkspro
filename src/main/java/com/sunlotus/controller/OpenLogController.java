@@ -1,9 +1,12 @@
 package com.sunlotus.controller;
 
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
+import com.sunlotus.common.UserInterceptor;
 import com.sunlotus.common.model.Opend_log;
 import com.sunlotus.service.OpenLogService;
 
+@Before(UserInterceptor.class)
 public class OpenLogController extends Controller {
 
 	public void index(){
