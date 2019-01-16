@@ -19,7 +19,7 @@ public class OpenNumberJob implements Job{
 		String igstr = "";
 		//更新这个字段，然后让秒定时器读秒
 		TaskConfig qco = TaskConfig.dao.findById(1);
-    	qco.set("second", 600);//恢复600秒：10分钟
+    	qco.set("second", 300);//恢复300秒：5分钟
     	igstr = FormString.formNum(qco.getInt("nowNum"));
     	qco.set("nowNum", qco.getInt("nowNum")+1);
     	qco.update();

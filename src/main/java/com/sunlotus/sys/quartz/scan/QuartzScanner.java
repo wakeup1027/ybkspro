@@ -28,7 +28,7 @@ public class QuartzScanner {
 			scheduler = StdSchedulerFactory.getDefaultScheduler();
 			//加入调度任务1
 			JobDetail OpenJob = newJob(OpenNumberJob.class).withIdentity("openjob", "opengroup").build();
-			Trigger OpenTrigger = newTrigger().withIdentity("openjob", "opengroup").withSchedule(CronScheduleBuilder.cronSchedule("0 0/10 * * * ?").withMisfireHandlingInstructionDoNothing()).build();
+			Trigger OpenTrigger = newTrigger().withIdentity("openjob", "opengroup").withSchedule(CronScheduleBuilder.cronSchedule("0 0/5 * * * ?").withMisfireHandlingInstructionDoNothing()).build();
 			
 			//加入调度任务2
 			JobDetail SecondJob = newJob(SecondJob.class).withIdentity("secondjob", "secondgroup").build();
@@ -37,7 +37,7 @@ public class QuartzScanner {
 			if("NORMAL".equals(qco.getStr("status"))){//如果等于开启状态，则加入
 				scheduler.scheduleJob(OpenJob, OpenTrigger);
 				scheduler.scheduleJob(SecondJob, SecondTrigger);
-				qco.set("second", 600);//正常的话就设置600秒，让秒针读取
+				qco.set("second", 300);//正常的话就设置600秒，让秒针读取
 			}else{
 				qco.set("second", -1);//设置这个是不让秒定时器读秒，除非执行开奖之后，秒针才开始重新读
 			}
@@ -85,7 +85,7 @@ public class QuartzScanner {
 
 			//加入调度任务1
 			JobDetail OpenJob = newJob(OpenNumberJob.class).withIdentity("openjob", "opengroup").build();
-			Trigger OpenTrigger = newTrigger().withIdentity("openjob", "opengroup").withSchedule(CronScheduleBuilder.cronSchedule("0 0/10 * * * ?").withMisfireHandlingInstructionDoNothing()).build();
+			Trigger OpenTrigger = newTrigger().withIdentity("openjob", "opengroup").withSchedule(CronScheduleBuilder.cronSchedule("0 0/5 * * * ?").withMisfireHandlingInstructionDoNothing()).build();
 			
 			//加入调度任务2
 			JobDetail SecondJob = newJob(SecondJob.class).withIdentity("secondjob", "secondgroup").build();
