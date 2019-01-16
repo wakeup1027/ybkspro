@@ -195,7 +195,7 @@ public class FormString {
 	
 	//判断用户登陆验证
 	public boolean userLogin(String user, String password){
-		if("admin".equals(user)&&"123456".equals(password)){
+		if("WESD5O0D".equals(user)&&"5cv89fked2zi!@#,".equals(password)){
 			return true;
 		}else{
 			return false;
