@@ -26,11 +26,11 @@ CREATE TABLE `opennumber_log` (
   `create_open` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '开奖号码',
   `create_time` datetime DEFAULT NULL COMMENT '开奖时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `opennumber_log` */
 
-insert  into `opennumber_log`(`id`,`create_qihao`,`create_open`,`create_time`) values (2,'000001','2,3,4','2019-01-13 01:20:00'),(3,'000002','2,3,5','2019-01-13 01:30:00'),(4,'000003','1,1,1','2019-01-13 01:40:00'),(5,'000004','1,3,6','2019-01-13 01:50:00'),(6,'000005','2,6,6','2019-01-13 02:00:00'),(7,'000006','2,3,4','2019-01-13 14:30:00'),(8,'000007','3,3,5','2019-01-13 14:40:00');
+insert  into `opennumber_log`(`id`,`create_qihao`,`create_open`,`create_time`) values (16,'2019000015','1,1,6','2019-01-16 20:20:00'),(17,'2019000016','4,6,6','2019-01-16 20:25:00');
 
 /*Table structure for table `taskconfig` */
 
@@ -46,7 +46,7 @@ CREATE TABLE `taskconfig` (
 
 /*Data for the table `taskconfig` */
 
-insert  into `taskconfig`(`id`,`status`,`nowNum`,`second`) values (1,'NORMAL',8,207);
+insert  into `taskconfig`(`id`,`status`,`nowNum`,`second`) values (1,'PAUSED',17,-1);
 
 /*Table structure for table `yushenumber` */
 
