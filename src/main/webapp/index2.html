@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=yes" />
-<meta name="keywords" content="意大利快三快三"/>
-<meta name="description" content="意大利快三 是专门以提供各种走势图为主的专业网站，每期及时更新号码"/>
-<title>意大利快三</title>
+<meta name="keywords" content="南非博彩"/>
+<meta name="description" content="南非博彩 是专门以提供各种走势图为主的专业网站，每期及时更新号码"/>
+<title>南非博彩</title>
 <link href="/img/favicon.ico" rel="shortcut icon"/>
 <link rel="stylesheet" href="/css/iconfont.css"/>
 <script src="/js/jquery-1.8.3.min.js"></script>
@@ -32,7 +32,7 @@ html,body{height:100%; font-size:13px; margin: 0px; padding: 0px; background:#E5
 		<div style="float:left; margin-top:8px; margin-right: 5px;">
 			<img src="/img/gq.png" style="width:25px; height:25px; border-radius:25px;"/>
 		</div>
-		<div style="float:left;font-size:12px;margin-left: 6px;">意大利快三</div>
+		<div style="float:left;font-size:12px;margin-left: 6px;">南非博彩</div>
 	</div>
 </div>
 <div>
@@ -77,13 +77,13 @@ html,body{height:100%; font-size:13px; margin: 0px; padding: 0px; background:#E5
 				<td rowspan="2" style="width:90px;">开奖号码</td>
 				<td rowspan="2" style="width:50px;">和值</td>
 				<td colspan="2" style="width:35px;">大小</td>
-				<td colspan="2" style="width:35px;">单双</td>
+				<td colspan="2" style="width:35px;">奇偶</td>
 			</tr>
 			<tr>
 				<td style="width:35px;">大</td>
 				<td style="width:35px;">小</td>
-				<td style="width:35px;">单</td>
-				<td style="width:35px;">双</td>
+				<td style="width:35px;">奇</td>
+				<td style="width:35px;">偶</td>
 			</tr>
 		</table>
 		<div id="canvasBox1"></div>
@@ -116,14 +116,14 @@ html,body{height:100%; font-size:13px; margin: 0px; padding: 0px; background:#E5
 <script type="text/javascript">
 var countdown=#(tc);
 document.addEventListener("visibilitychange", function(){
-    document.hidden ? "意大利快三" : window.location.href="/index";
+    document.hidden ? "南非博彩" : window.location.href="/";
 });
 
 $(function(){
 	
 	var date = []; //随机开奖的结果集
 	var bigSmallDate = []; //大小的坐标结果集
-	var signDoubleDate = []; //单双的坐标结果集
+	var signDoubleDate = []; //奇偶的坐标结果集
 	var firstNumRe = "";
 	
 	#for(data : opendlog)
@@ -158,7 +158,7 @@ $(function(){
 			var bsX = parseInt(tdArr.eq(bigsamll(allRes)).offset().left)+bsHeight-5; 
 			bigSmallDate.push(formPointer(bsX,bsY));
 		
-			//整理画(单双)的线的坐标
+			//整理画(奇偶)的线的坐标
 			var dsHeight = parseInt(tdArr.eq(signDouble(allRes)).height())/2;
 			var dsWidth = parseInt(tdArr.eq(signDouble(allRes)).width())/2;
 			var dsY = parseInt(tdArr.eq(signDouble(allRes)).offset().top)+dsWidth; 
@@ -172,11 +172,11 @@ $(function(){
 				tdArr.eq(3).html("<div class='lui-ball-style-big'>大</div>").addClass("daNum");
 			}
 		
-			//写单双
+			//写奇偶
 			if(allRes%2==0){
-				tdArr.eq(6).html("<div class='lui-ball-style-shua'>双</div>").addClass("shuangNum");
+				tdArr.eq(6).html("<div class='lui-ball-style-shua'>偶</div>").addClass("shuangNum");
 			}else{
-				tdArr.eq(5).html("<div class='lui-ball-style-dan'>单</div>").addClass("danNum");
+				tdArr.eq(5).html("<div class='lui-ball-style-dan'>奇</div>").addClass("danNum");
 			}
 			
 		}

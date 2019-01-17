@@ -12,7 +12,7 @@ public class OpenLogService {
 	 * @return
 	 */
 	public JSONObject LoadTableData(Integer page, Integer limit){
-		Page<Opend_log> list = Opend_log.dao.paginate(page, limit, "select *", "FROM opennumber_log");
+		Page<Opend_log> list = Opend_log.dao.paginate(page, limit, "select *", "FROM opennumber_log order by create_time desc");
 		JSONObject json = new JSONObject();
 		json.put("code", 0);
 		json.put("msg", "");

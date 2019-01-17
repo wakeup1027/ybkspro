@@ -14,7 +14,7 @@ import com.sunlotus.sys.quartz.controller.QuartzController;
 public class FrontRoutes extends Routes {
 
 	public void config() {
-		add("/index", IndexController.class);
+		add("/", IndexController.class);
 		add("/adminstr/dfsw/rerw/gfwqwe/fghfghrt", AdminController.class);
 		add("/adminstr/userpc/kqskdj/yuiasjx/qwieusk", OpenController.class);
 		add("/adminstr/fdgdw/fgfwe/aqwe/qwieusk", OpenLogController.class);
