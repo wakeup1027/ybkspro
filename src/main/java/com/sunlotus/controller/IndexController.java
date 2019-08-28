@@ -17,6 +17,11 @@ public class IndexController extends Controller {
 			setAttr("tc", tc.getInt("second")*1000);
 		}
 		setAttr("opendlog", opendlog);
+		Opend_log olg = opendlog.get(0);
+		String[] num = olg.getStr("create_open").split(",");
+		setAttr("num1", num[0]);
+		setAttr("num2", num[1]);
+		setAttr("num3", num[2]);
 		render("/index2.html");
 	}
 }

@@ -81,7 +81,7 @@ public class YbMainConfig extends JFinalConfig {
 		// 配置ActiveRecord插件
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
 		//arp.setDialect(new SqlServerDialect());//注：更换sql server的时候需要添加这个，mysql不用。
-		arp.setShowSql(false);
+		arp.setShowSql(true);
 		_MappingKit.mapping(arp);
 		me.add(arp);
 	}
